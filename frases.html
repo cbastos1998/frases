@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases Aleatórias</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 80%;
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            button {
+                width: 100%;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Frases Aleatórias</h1>
+        <button id="generateBtn">Gerar Frase</button>
+        <p id="randomPhrase"></p>
+    </div>
+
+    <script>
+        const phrases = [
+        "Você deu sorte! Jogue outra vez",
+            "Você deu sorte! Por ter feito o descarte do lixo corretamente nas lixeiras recicláveis, ganhou 10 moedas verdes.",
+            "Você deu sorte! Você precisa de dinheiro para implementar uma agricultura vertical. Escolha algum jogador e pegue 10 moedas verdes dele para ajudar nessa finalidade.",
+            "Você deu sorte! Avance até a próxima casa. Caso seja uma de perguntas, responda a questão.",
+            "Você deu sorte! Escolha um jogador para não jogar quando chegar seu próximo turno.",
+            "Você deu azar! Não jogue no próximo turno.",
+            "Você deu azar! A empresa a qual você é dono extraiu madeira de uma área de preservação ambiental. Perca 10 moedas verdes.",
+            "Você deu azar! Você deixou a torneira de casa aberta. Perca 10 moedas verdes.",
+            "Você deu azar! Se você errar a próxima pergunta, perca 10 moedas verdes, caso caia numa casa de sorte ou azar não jogue e perca imediatamente as 10 moedas verdes.",
+            "Você deu azar! Seu colega precisa de um investimento para montar uma empresa de coleta seletiva. Dê 10 moedas verdes para um jogador de sua escolha."
+        ];
+
+        let usedIndices = [];
+
+        function generateRandomPhrase() {
+            if (usedIndices.length === phrases.length) {
+                // alert("Você viu todas as frases!");
+                usedIndices = [];
+                return;
+            }
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * phrases.length);
+            } while (usedIndices.includes(randomIndex));
+
+            usedIndices.push(randomIndex);
+            const randomPhrase = phrases[randomIndex];
+            document.getElementById("randomPhrase").textContent = randomPhrase;
+        }
+
+        document.getElementById("generateBtn").addEventListener("click", generateRandomPhrase);
+    </script>
+</body>
+
+</html>
